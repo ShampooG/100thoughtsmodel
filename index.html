@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100个思维模型应用指南</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <aside id="sidebar">
+            <div class="logo">
+                <h2>思维模型库</h2>
+                <p>100 Mental Models</p>
+            </div>
+            <ul id="category-list"></ul>
+        </aside>
+        
+        <main id="main-content">
+            <header>
+                <h1 id="category-title">请选择分类</h1>
+            </header>
+            <div id="models-grid" class="grid">
+                <div class="empty-state">正在加载思维模型...</div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for showing details -->
+    <div id="model-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-header">
+                <h2 id="modal-title">Model Title</h2>
+                <div class="modal-purpose" id="modal-summary">Summary</div>
+            </div>
+            <div class="modal-detail-container" id="modal-detail">
+                <!-- Text detail injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
