@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100个思维模型应用指南</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>100 Mental Models - 思维模型库</title>
+    <meta name="description" content="100个顶级思维模型，助你提升认知与决策能力。">
+    <meta name="theme-color" content="#f8fafc">
+    <meta property="og:title" content="100 Mental Models">
+    <meta property="og:description" content="100个顶级思维模型，助你提升认知与决策能力。">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="app">
         <aside id="sidebar">
-            <div class="logo">
+            <div class="logo-area">
                 <h2>思维模型库</h2>
                 <p>100 Mental Models</p>
             </div>
@@ -18,29 +25,45 @@
         </aside>
         
         <main id="main-content">
-            <header>
-                <h1 id="category-title">请选择分类</h1>
-            </header>
-            <div id="models-grid" class="grid">
-                <div class="empty-state">正在加载思维模型...</div>
+            <div id="search-container">
+                <input type="text" id="search-input" placeholder="搜索思维模型...">
             </div>
+            
+            <div id="overview-section">
+                <div class="overview-header">
+                    <h1>欢迎来到思维模型库</h1>
+                    <p>探索100个顶级思维模型，重塑你的认知模式</p>
+                </div>
+                <div id="overview-grid" class="overview-grid"></div>
+            </div>
+
+            <header id="category-header" style="display: none;">
+                <h1 id="category-title"></h1>
+            </header>
+            
+            <div id="models-grid" class="grid" style="display: none;"></div>
         </main>
     </div>
 
-    <!-- Modal for showing details -->
     <div id="model-modal" class="modal">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
+            <button class="close-button" id="close-modal">&times;</button>
             <div class="modal-header">
-                <h2 id="modal-title">Model Title</h2>
-                <div class="modal-purpose" id="modal-summary">Summary</div>
+                <h2 id="modal-title"></h2>
+                <div class="modal-purpose" id="modal-summary"></div>
             </div>
-            <div class="modal-detail-container" id="modal-detail">
-                <!-- Text detail injected here -->
+            <div class="modal-nav">
+                <button id="prev-model" class="nav-btn" aria-label="上一个">&larr;</button>
+                <span id="modal-counter"></span>
+                <button id="next-model" class="nav-btn" aria-label="下一个">&rarr;</button>
             </div>
+            <div id="modal-detail" class="modal-detail-container"></div>
         </div>
     </div>
 
+    <button id="back-to-top" aria-label="返回顶部">↑</button>
+
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
