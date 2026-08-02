@@ -315,7 +315,7 @@ body {
     justify-content: center;
     color: var(--text-secondary);
     transition: all 0.2s;
-    z-index: 2;
+    z-index: 60;
 }
 
 .close-button:hover {
@@ -323,12 +323,51 @@ body {
     color: var(--text-primary);
 }
 
+.float-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    color: var(--accent);
+    font-size: 1.8rem;
+    font-weight: 300;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    transition: all 0.2s ease;
+    line-height: 1;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.float-nav-btn.left {
+    left: 12px;
+}
+
+.float-nav-btn.right {
+    right: 12px;
+}
+
+.float-nav-btn:hover, .float-nav-btn:active {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-50%) scale(1.08);
+}
+
 .modal-header {
     background: var(--bg-main);
     padding: 24px 32px;
     border-radius: 20px 20px 0 0;
     border-bottom: 1px solid var(--border-color);
-    flex-shrink: 0;
+    flex: 0 0 auto;
 }
 
 #modal-title {
@@ -355,7 +394,7 @@ body {
     padding-bottom: max(10px, env(safe-area-inset-bottom));
     border-top: 1px solid var(--border-color);
     background: var(--bg-panel);
-    flex-shrink: 0;
+    flex: 0 0 auto;
     position: relative;
     z-index: 10;
 }
@@ -398,7 +437,9 @@ body {
 .modal-detail-container {
     padding: 24px 32px;
     overflow-y: auto;
-    flex: 1;
+    -webkit-overflow-scrolling: touch;
+    flex: 1 1 auto;
+    min-height: 0;
     font-size: 1.05rem;
     line-height: 1.8;
     color: var(--text-secondary);
@@ -418,24 +459,40 @@ body {
     margin-bottom: 14px;
 }
 
-.modal-detail-container ul,
-.modal-detail-container ol {
-    padding-left: 18px;
-    margin-top: 6px;
+.modal-detail-container ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 8px;
     margin-bottom: 14px;
 }
 
-.modal-detail-container li {
-    margin-bottom: 6px;
+.modal-detail-container ul > li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 8px;
     line-height: 1.65;
-    padding-left: 2px;
 }
 
-.modal-detail-container li ul,
-.modal-detail-container li ol {
-    padding-left: 16px;
-    margin-top: 4px;
-    margin-bottom: 4px;
+.modal-detail-container ul > li::before {
+    content: "•";
+    position: absolute;
+    left: 6px;
+    top: 0;
+    color: var(--accent);
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.modal-detail-container ol {
+    padding-left: 24px;
+    margin-top: 8px;
+    margin-bottom: 14px;
+}
+
+.modal-detail-container ol > li {
+    margin-bottom: 8px;
+    line-height: 1.65;
 }
 
 .example-box {
@@ -579,14 +636,35 @@ body {
         font-size: 0.9rem;
     }
 
+    .float-nav-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.5rem;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(4px);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .float-nav-btn.left {
+        left: 6px;
+    }
+
+    .float-nav-btn.right {
+        right: 6px;
+    }
+
     .modal-detail-container {
         padding: 16px;
         font-size: 0.95rem;
     }
 
-    .modal-detail-container ul,
-    .modal-detail-container ol {
+    .modal-detail-container ul > li {
         padding-left: 18px;
+    }
+
+    .modal-detail-container ul > li::before {
+        left: 4px;
     }
 
     .modal-nav {

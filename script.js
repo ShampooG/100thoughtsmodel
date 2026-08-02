@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalCounter = document.getElementById('modal-counter');
     const prevBtn = document.getElementById('prev-model');
     const nextBtn = document.getElementById('next-model');
+    const floatPrevBtn = document.getElementById('float-prev');
+    const floatNextBtn = document.getElementById('float-next');
 
     if (typeof modelsData === 'undefined') {
         console.error('modelsData is not defined. Make sure data.js is loaded before script.js');
@@ -276,6 +278,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     prevBtn.addEventListener('click', showPrevModel);
     nextBtn.addEventListener('click', showNextModel);
+    if (floatPrevBtn) floatPrevBtn.addEventListener('click', showPrevModel);
+    if (floatNextBtn) floatNextBtn.addEventListener('click', showNextModel);
 
     document.addEventListener('keydown', (e) => {
         if (modal.classList.contains('visible')) {
