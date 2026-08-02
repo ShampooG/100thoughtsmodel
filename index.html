@@ -47,10 +47,15 @@
 
     <div id="model-modal" class="modal">
         <div class="modal-content">
-            <button class="close-button" id="close-modal">&times;</button>
-            <button id="float-prev" class="float-nav-btn left" aria-label="上一个">&lsaquo;</button>
-            <button id="float-next" class="float-nav-btn right" aria-label="下一个">&rsaquo;</button>
             <div class="modal-header">
+                <div class="modal-top-bar">
+                    <span id="modal-counter-top" class="modal-counter-badge"></span>
+                    <div class="modal-header-actions">
+                        <button id="header-prev" class="header-btn" aria-label="上一个思维模型">&lsaquo;</button>
+                        <button id="header-next" class="header-btn" aria-label="下一个思维模型">&rsaquo;</button>
+                        <button id="close-modal" class="close-button" aria-label="关闭">&times;</button>
+                    </div>
+                </div>
                 <h2 id="modal-title"></h2>
                 <div class="modal-purpose" id="modal-summary"></div>
             </div>

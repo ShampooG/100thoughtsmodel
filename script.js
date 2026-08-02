@@ -25,10 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalSummary = document.getElementById('modal-summary');
     const modalDetail = document.getElementById('modal-detail');
     const modalCounter = document.getElementById('modal-counter');
+    const modalCounterTop = document.getElementById('modal-counter-top');
     const prevBtn = document.getElementById('prev-model');
     const nextBtn = document.getElementById('next-model');
-    const floatPrevBtn = document.getElementById('float-prev');
-    const floatNextBtn = document.getElementById('float-next');
+    const headerPrevBtn = document.getElementById('header-prev');
+    const headerNextBtn = document.getElementById('header-next');
 
     if (typeof modelsData === 'undefined') {
         console.error('modelsData is not defined. Make sure data.js is loaded before script.js');
@@ -229,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalDetail.scrollTop = 0;
         
         modalCounter.textContent = `${index + 1} / ${currentModels.length}`;
+        if (modalCounterTop) modalCounterTop.textContent = `${index + 1} / ${currentModels.length}`;
 
         if (updateHash) {
             window.location.hash = `#model=${model.id}`;
@@ -278,8 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     prevBtn.addEventListener('click', showPrevModel);
     nextBtn.addEventListener('click', showNextModel);
-    if (floatPrevBtn) floatPrevBtn.addEventListener('click', showPrevModel);
-    if (floatNextBtn) floatNextBtn.addEventListener('click', showNextModel);
+    if (headerPrevBtn) headerPrevBtn.addEventListener('click', showPrevModel);
+    if (headerNextBtn) headerNextBtn.addEventListener('click', showNextModel);
 
     document.addEventListener('keydown', (e) => {
         if (modal.classList.contains('visible')) {
