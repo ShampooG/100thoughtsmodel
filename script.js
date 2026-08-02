@@ -24,12 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTitle = document.getElementById('modal-title');
     const modalSummary = document.getElementById('modal-summary');
     const modalDetail = document.getElementById('modal-detail');
-    const modalCounter = document.getElementById('modal-counter');
-    const modalCounterTop = document.getElementById('modal-counter-top');
-    const prevBtn = document.getElementById('prev-model');
-    const nextBtn = document.getElementById('next-model');
-    const headerPrevBtn = document.getElementById('header-prev');
-    const headerNextBtn = document.getElementById('header-next');
 
     if (typeof modelsData === 'undefined') {
         console.error('modelsData is not defined. Make sure data.js is loaded before script.js');
@@ -228,21 +222,18 @@ document.addEventListener('DOMContentLoaded', () => {
         modalSummary.textContent = model.summary;
         modalDetail.innerHTML = model.detail || '';
         modalDetail.scrollTop = 0;
-        
-        modalCounter.textContent = `${index + 1} / ${currentModels.length}`;
-        if (modalCounterTop) modalCounterTop.textContent = `${index + 1} / ${currentModels.length}`;
 
         if (updateHash) {
             window.location.hash = `#model=${model.id}`;
         }
 
         modal.classList.add('visible');
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('modal-open');
     }
 
     function closeModalUI() {
         modal.classList.remove('visible');
-        document.body.style.overflow = '';
+        document.body.classList.remove('modal-open');
     }
 
     function closeModal() {
@@ -264,66 +255,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function showPrevModel() {
-        if (currentModels.length === 0) return;
-        let newIndex = currentModalIndex - 1;
-        if (newIndex < 0) newIndex = currentModels.length - 1;
-        openModal(newIndex);
-    }
-
-    function showNextModel() {
-        if (currentModels.length === 0) return;
-        let newIndex = currentModalIndex + 1;
-        if (newIndex >= currentModels.length) newIndex = 0;
-        openModal(newIndex);
-    }
-
-    prevBtn.addEventListener('click', showPrevModel);
-    nextBtn.addEventListener('click', showNextModel);
-    if (headerPrevBtn) headerPrevBtn.addEventListener('click', showPrevModel);
-    if (headerNextBtn) headerNextBtn.addEventListener('click', showNextModel);
-
     document.addEventListener('keydown', (e) => {
         if (modal.classList.contains('visible')) {
             if (e.key === 'Escape') closeModal();
-            if (e.key === 'ArrowLeft') showPrevModel();
-            if (e.key === 'ArrowRight') showNextModel();
         }
     });
-
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchEndX = 0;
-    let touchEndY = 0;
-
-    modalContent.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        touchStartY = e.changedTouches[0].screenY;
-    }, { passive: true });
-
-    modalContent.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        touchEndY = e.changedTouches[0].screenY;
-        handleModalSwipe();
-    }, { passive: true });
-
-    function handleModalSwipe() {
-        const deltaX = touchEndX - touchStartX;
-        const deltaY = touchEndY - touchStartY;
-        
-        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-            if (deltaX > 0) {
-                showPrevModel();
-            } else {
-                showNextModel();
-            }
-        }
-        else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY > 100) {
-            if (modalDetail.scrollTop <= 0 && deltaY > 0) {
-                closeModal();
-            }
-        }
-    }
 
     function checkScrollVisibility(scrollTop) {
         if (scrollTop > 300) {
