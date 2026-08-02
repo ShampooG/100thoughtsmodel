@@ -310,23 +310,10 @@ body.modal-open {
     transform: scale(1);
 }
 
-.modal-top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-.modal-counter-badge {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--accent-hover);
-    background: var(--accent-light);
-    padding: 4px 12px;
-    border-radius: 12px;
-}
-
 .close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -341,6 +328,7 @@ body.modal-open {
     transition: all 0.2s;
     line-height: 1;
     user-select: none;
+    z-index: 10;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -352,7 +340,7 @@ body.modal-open {
 
 .modal-header {
     background: var(--bg-main);
-    padding: 20px 28px;
+    padding: 24px 28px 18px;
     border-radius: 20px 20px 0 0;
     border-bottom: 1px solid var(--border-color);
     flex: 0 0 auto;
